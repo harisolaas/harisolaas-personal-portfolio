@@ -1,18 +1,27 @@
 import Head from "next/head";
+import { differenceInYears } from "date-fns";
+import Layout from "../components/layout";
 
 export default function Home() {
+  const yearsOfExperience = differenceInYears(new Date(), new Date(2016, 1, 1));
   return (
-    <div>
-      <Head>
-        <title>Hari Solaas</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <Layout>
       <main>
-        <h1>Welcome to my site!</h1>
+        <h1>Hi, I'm Hari Solaas! Pleased to meet you.</h1>
+        <p>
+          For the last {yearsOfExperience} years I've been building{" "}
+          <strong>Wep Applications</strong> for clients around the world,
+          startups and big companies. My experience ranges from working as a
+          solo <strong>Freelance Profesional</strong> as well as a part of
+          bigger teams.
+        </p>
+        <p>
+          When working with me you can expect a fluid communication, attention
+          to detail and super attractive results.
+        </p>
       </main>
 
       <footer></footer>
-    </div>
+    </Layout>
   );
 }
