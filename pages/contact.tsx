@@ -1,6 +1,6 @@
 import Layout from "../components/layout";
 
-export default function Contact() {
+export default function Contact(): JSX.Element {
   return (
     <Layout title="Contact">
       <h1>Contact me!</h1>

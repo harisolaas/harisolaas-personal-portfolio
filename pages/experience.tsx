@@ -1,6 +1,6 @@
 import Layout from "../components/layout";
 
-export default function Experience() {
+export default function Experience(): JSX.Element {
   return (
     <Layout title="Experience">
       <h1>Experience</h1>

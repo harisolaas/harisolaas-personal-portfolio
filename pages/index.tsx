@@ -1,8 +1,7 @@
-import Head from "next/head";
 import { differenceInYears } from "date-fns";
 import Layout from "../components/layout";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const yearsOfExperience = differenceInYears(new Date(), new Date(2016, 1, 1));
   return (
     <Layout>
@@ -20,8 +19,6 @@ export default function Home() {
           to detail and super attractive results.
         </p>
       </main>
-
-      <footer></footer>
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
 import Layout from "../components/layout";
 
-export default function Skills() {
+export default function Skills(): JSX.Element {
   return (
     <Layout title="Skills">
       <h1>Skills</h1>
