@@ -1,10 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+import fonts from "./fonts";
 
 export default createGlobalStyle`
   html,
   body {
     color: ${({ theme }) => theme.colors.primary};
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     margin: 0;
     padding: 0;
@@ -16,4 +17,5 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  ${fonts}
 `;

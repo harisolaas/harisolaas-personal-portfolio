@@ -1,15 +1,24 @@
+import styled from "styled-components";
+import H1 from "../components/h1";
 import Layout from "../components/layout";
+import Text from "../components/text";
+import { defaultText } from "../styles/mixins";
+
+const List = styled.ul`
+  ${defaultText}
+  line-height: 1.5;
+`;
 
 export default function Skills(): JSX.Element {
   return (
     <Layout title="Skills">
-      <h1>Skills</h1>
-      <p>
+      <H1>Skills</H1>
+      <Text>
         I'm your <strong>Java Script</strong> specialist, I love to find simple
         solutions to complex challenges. The main languages and technologies I
         work with are:
-      </p>
-      <ul>
+      </Text>
+      <List>
         <li>React JS</li>
         <li>TypeScript</li>
         <li>Jest</li>
@@ -22,7 +31,7 @@ export default function Skills(): JSX.Element {
         <li>HTML5</li>
         <li>CSS3</li>
         <li>SCSS</li>
-      </ul>
+      </List>
     </Layout>
   );
 }

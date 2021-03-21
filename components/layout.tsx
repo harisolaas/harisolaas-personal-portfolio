@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { FC } from "react";
 import styled from "styled-components";
+import { defaultText, globalPadding } from "../styles/mixins";
 
 type LayoutProps = { title?: string };
 
@@ -9,17 +10,30 @@ const GlobalNavigation = styled.nav`
   display: flex;
   justify-content: space-between;
   width: 280px;
+  ${defaultText}
 `;
 const Header = styled.header`
+  ${globalPadding}
   align-items: center;
   display: flex;
   height: 76px;
   justify-content: space-between;
-  padding: 0 36px;
 `;
 const LayoutWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   min-height: 100vh;
+  position: relative;
+`;
+const Main = styled.main`
+  ${globalPadding}
+`;
+const Footer = styled.footer`
+  ${globalPadding}
+  bottom: 0;
+  height: 28px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
 `;
 
 const Layout: FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
@@ -51,10 +65,8 @@ const Layout: FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
           </Link>
         </GlobalNavigation>
       </Header>
-
-      {children}
-
-      <footer></footer>
+      <Main>{children}</Main>
+      <Footer>FOOTER</Footer>
     </LayoutWrapper>
   );
 };

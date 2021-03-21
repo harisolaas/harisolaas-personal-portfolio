@@ -1,14 +1,16 @@
+import H1 from "../components/h1";
 import Layout from "../components/layout";
+import Text from "../components/text";
 
 export default function Contact(): JSX.Element {
   return (
     <Layout title="Contact">
-      <h1>Contact me!</h1>
-      <p>
+      <H1>Contact me!</H1>
+      <Text>
         Want to get in touch? You can email me at{" "}
         <a href="mailto:dev@harisolaas.com">dev@harisolaas.com</a> or leave your
         message bellow.
-      </p>
+      </Text>
       <form action="">
         <div>
           <label htmlFor="name">Name</label>
