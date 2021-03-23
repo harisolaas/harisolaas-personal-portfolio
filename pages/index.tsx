@@ -1,10 +1,10 @@
 import { differenceInYears } from "date-fns";
 import Image from "next/image";
 import styled from "styled-components";
-import H1 from "../components/h1";
+import H1 from "../components/styled-h1";
 import Layout from "../components/layout";
-import DefaultMain from "../components/main";
-import Text from "../components/text";
+import DefaultMain from "../components/styled-main";
+import Text from "../components/styled-text";
 
 const Content = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primary};

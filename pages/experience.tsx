@@ -1,7 +1,7 @@
-import H1 from "../components/h1";
-import H2 from "../components/h2";
+import H1 from "../components/styled-h1";
+import H2 from "../components/styled-h2";
 import Layout from "../components/layout";
-import Main from "../components/main";
+import Main from "../components/styled-main";
 
 export default function Experience(): JSX.Element {
   return (

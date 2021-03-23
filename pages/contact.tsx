@@ -1,7 +1,7 @@
-import H1 from "../components/h1";
+import H1 from "../components/styled-h1";
 import Layout from "../components/layout";
-import Main from "../components/main";
-import Text from "../components/text";
+import Main from "../components/styled-main";
+import Text from "../components/styled-text";
 
 export default function Contact(): JSX.Element {
   return (
