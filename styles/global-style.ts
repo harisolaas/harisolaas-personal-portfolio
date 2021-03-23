@@ -17,5 +17,8 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  :focus {
+    outline: ${({ theme }) => theme.colors.firefly} auto 1px;
+  }
   ${fonts}
 `;

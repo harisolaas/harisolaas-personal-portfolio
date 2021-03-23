@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { FC } from "react";
 import styled from "styled-components";
+import NavLink from "./nav-link";
 import { defaultText, globalPadding } from "../styles/mixins";
 
 type LayoutProps = { title?: string };
@@ -50,22 +51,12 @@ const Layout: FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
       </Head>
       <Header>
         <div>
-          <Link href="/">
-            <a>HS</a>
-          </Link>
+          <NavLink href="/">HS</NavLink>
         </div>
         <GlobalNavigation>
-          <Link href="/skills">
-            <a>Skills</a>
-          </Link>
-          |
-          <Link href="/experience">
-            <a>Experience</a>
-          </Link>
-          |
-          <Link href="/contact">
-            <a>Contact</a>
-          </Link>
+          <NavLink href="/skills">Skills</NavLink>|
+          <NavLink href="/experience">Experience</NavLink>|
+          <NavLink href="/contact">Contact</NavLink>
         </GlobalNavigation>
       </Header>
       {children}
