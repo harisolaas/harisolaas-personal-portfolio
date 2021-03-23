@@ -16,23 +16,26 @@ const Header = styled.header`
   ${globalPadding}
   align-items: center;
   display: flex;
-  height: 76px;
+  height: ${({ theme }) => theme.headerHeight};
   justify-content: space-between;
+  position: fixed;
+  width: 100%;
 `;
 const LayoutWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
+  display: flex;
+  flex-flow: column;
   min-height: 100vh;
   position: relative;
 `;
-const Main = styled.main`
-  ${globalPadding}
-`;
 const Footer = styled.footer`
   ${globalPadding}
+  align-items: center;
   bottom: 0;
-  height: 28px;
+  display: flex;
+  height: ${({ theme }) => theme.footerHeight};
+  justify-content: center;
   position: absolute;
-  text-align: center;
   width: 100%;
 `;
 
@@ -65,7 +68,7 @@ const Layout: FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
           </Link>
         </GlobalNavigation>
       </Header>
-      <Main>{children}</Main>
+      {children}
       <Footer>FOOTER</Footer>
     </LayoutWrapper>
   );

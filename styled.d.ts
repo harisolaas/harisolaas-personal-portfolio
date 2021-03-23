@@ -6,5 +6,7 @@ declare module "styled-components" {
       background: string;
       primary: string;
     };
+    footerHeight: string;
+    headerHeight: string;
   }
 }
