@@ -8,7 +8,6 @@ import { fireflyAnimationFinalPosition } from "../styles/mixins";
 type AnimatedLinkProps = {
   current: boolean;
 };
-
 const forceFireflyFinalPosition = css`
   > span {
     text-shadow: ${({ theme }) => theme.textShadow};
@@ -23,7 +22,6 @@ const AnimatedLink = styled(AnimatedClick)<AnimatedLinkProps>`
 
 const NavLink: FC<LinkProps> = ({ children, href, ...otherProps }) => {
   const { pathname } = useRouter();
-  console.log(href === pathname, href, pathname);
 
   return (
     <Link href={href} {...otherProps}>

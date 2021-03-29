@@ -1,11 +1,8 @@
 import Head from "next/head";
-import Link from "next/link";
 import { FC } from "react";
 import styled from "styled-components";
 import NavLink from "./nav-link";
 import { defaultText, globalPadding } from "../styles/mixins";
-
-type LayoutProps = { title?: string };
 
 const GlobalNavigation = styled.nav`
   display: flex;
@@ -40,6 +37,7 @@ const Footer = styled.footer`
   width: 100%;
 `;
 
+type LayoutProps = { title?: string };
 const Layout: FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
   return (
     <LayoutWrapper>

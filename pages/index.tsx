@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import H1 from "../components/styled-h1";
 import Layout from "../components/layout";
-import DefaultMain from "../components/styled-main";
+import Main from "../components/styled-main";
 import Text from "../components/styled-text";
 
 const Content = styled.div`
@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
   const yearsOfExperience = differenceInYears(new Date(), new Date(2016, 1, 1));
   return (
     <Layout>
-      <DefaultMain>
+      <Main>
         <Content>
           <ContentHeader>
             <ImageContainer>
@@ -59,7 +59,7 @@ export default function Home(): JSX.Element {
             to detail and super attractive results.
           </Text>
         </Content>
-      </DefaultMain>
+      </Main>
     </Layout>
   );
 }

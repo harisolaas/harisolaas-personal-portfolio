@@ -5,8 +5,7 @@ export default createGlobalStyle`
   html,
   body {
     color: ${({ theme }) => theme.colors.primary};
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     margin: 0;
     padding: 0;
   }

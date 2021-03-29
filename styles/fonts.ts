@@ -19,6 +19,25 @@ export default css`
     font-style: normal;
   }
   @font-face {
+    font-family: "Roboto";
+    src: url("${process.env.SITE_URL}fonts/Roboto-RegularItalic.woff2");
+    src: url("${process.env.SITE_URL}fonts/Roboto-RegularItalic.woff2")
+        format("woff2"),
+      url("${process.env.SITE_URL}fonts/Roboto-RegularItalic.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "Montserrat";
+    src: url("${process.env.SITE_URL}fonts/Montserrat-Regular.woff2");
+    src: url("${process.env.SITE_URL}fonts/Montserrat-Regular.woff2")
+        format("woff2"),
+      url("${process.env.SITE_URL}fonts/Montserrat-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
     font-family: "Montserrat";
     src: url("${process.env.SITE_URL}fonts/Montserrat-Medium.woff2");
     src: url("${process.env.SITE_URL}fonts/Montserrat-Medium.woff2")

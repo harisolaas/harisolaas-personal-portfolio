@@ -1,5 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
+// Fonts
+const fallbackSansSerifFonts =
+  "-apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif";
+
+// Colors
 const black = "#000000";
 const primary = "#eeeeee";
 const background = "#173246";
@@ -11,6 +16,10 @@ const theme: DefaultTheme = {
     black,
     firefly,
     primary,
+  },
+  fonts: {
+    primary: `Roboto, ${fallbackSansSerifFonts}`,
+    secondary: `Montserrat, ${fallbackSansSerifFonts}`,
   },
   footerHeight: "28px",
   headerHeight: "76px",

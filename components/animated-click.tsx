@@ -10,10 +10,11 @@ const Wrapper = styled.span`
     opacity: 1;
     position: absolute;
     top: 50%;
-    transition: all 0.8s ease-out, opacity 0.3s;
+    transition: all 0.5s ease-out, opacity 0.3s;
     transform: rotate(0deg) translateX(10px) rotate(0deg) scale(0);
   }
   :active {
+    opacity: 0.9;
     ::after {
       opacity: 0;
     }
