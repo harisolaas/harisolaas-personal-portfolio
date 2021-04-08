@@ -33,7 +33,7 @@ const Firefly: FC<FireflyProps> = ({ moveTo }) => {
       firefly.removeEventListener("transitionstart", handleTransitionStart);
       firefly.removeEventListener("transitionend", handleTransitionEnd);
     };
-  });
+  }, []);
   const [left, top] = moveTo;
 
   return <StyledFirefly left={left} top={top} ref={ref} />;

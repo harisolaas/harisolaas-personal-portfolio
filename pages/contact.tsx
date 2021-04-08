@@ -20,7 +20,7 @@ const Content = styled.div`
 const Email = styled.a`
   font-style: italic;
 `;
-const FormContainer = styled.div`
+const Form = styled.form`
   position: relative;
 `;
 const ImageContainer = styled.div`
@@ -61,9 +61,9 @@ export enum FIELDS {
 }
 
 const FieldCoordinates: { [key in FIELDS]: [number, number] } = {
-  [FIELDS.Name]: [54, 152],
-  [FIELDS.Email]: [54, 235],
-  [FIELDS.Message]: [78, 316],
+  [FIELDS.Name]: [54, 6],
+  [FIELDS.Email]: [54, 87],
+  [FIELDS.Message]: [78, 168],
 };
 
 export default function Contact(): JSX.Element {
@@ -79,7 +79,7 @@ export default function Contact(): JSX.Element {
     <Layout title="Contact">
       <Main>
         <Content>
-          <FormContainer>
+          <div>
             <H1>Contact me!</H1>
             <Text>
               Want to get in touch? You can email me at{" "}
@@ -88,7 +88,7 @@ export default function Contact(): JSX.Element {
               </Email>{" "}
               or leave your message bellow.
             </Text>
-            <form id="contact-form" action="">
+            <Form id="contact-form" action="">
               <InputGroup>
                 <Label htmlFor={FIELDS.Name}>Name *</Label>
                 <Input
@@ -121,9 +121,9 @@ export default function Contact(): JSX.Element {
                   Send
                 </Button>
               </ButtonContainer>
-            </form>
-            <Firefly moveTo={FieldCoordinates[FIELDS[activeField]]} />
-          </FormContainer>
+              <Firefly moveTo={FieldCoordinates[FIELDS[activeField]]} />
+            </Form>
+          </div>
           <ImageContainer>
             <Image height={600} width={499} src="/images/oso-hormiguero.webp" />
           </ImageContainer>
