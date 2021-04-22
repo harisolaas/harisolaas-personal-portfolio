@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { useSafeReducer, Reducer } from "../utils/hooks";
 
 export type Direction = 0 | 1;
+export interface SliderItem {
+  direction?: Direction;
+  slideOut?: boolean;
+  endTransition?: () => void;
+}
 interface State {
   activeIndex: number;
   direction: Direction;
@@ -36,7 +41,10 @@ const List = styled.ul`
   padding: 0;
 `;
 
-const RecommendationsSlider: FC = ({ children }) => {
+const RecommendationsSlider: FC<{ transform: boolean }> = ({
+  children,
+  transform,
+}) => {
   const [state, dispatch] = useSafeReducer(reducer, {
     activeIndex: 0,
     direction: null,
@@ -69,13 +77,17 @@ const RecommendationsSlider: FC = ({ children }) => {
     <List>
       {React.Children.map(children, (child, index) => {
         if (!slidingOut && activeIndex === index) {
-          return React.cloneElement(child as ReactElement, { direction });
+          return React.cloneElement(child as ReactElement, {
+            direction,
+            transform,
+          });
         }
         if (slidingOut && prevIndex === index) {
           return React.cloneElement(child as ReactElement, {
             direction,
             slideOut: true,
             endTransition: slideOutEnd,
+            transform,
           });
         }
       })}

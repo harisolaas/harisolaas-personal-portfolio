@@ -5,7 +5,6 @@ import Layout from "../components/layout";
 import Main from "../components/styled-main";
 import RecommendationItem from "../components/RecommendationSliderItem";
 import RecommendationsSlider from "../components/Slider";
-import { defaultText } from "../styles/mixins";
 import media from "../utils/mediaQueries";
 
 const recommendationsData = Array(7).fill({
@@ -35,10 +34,6 @@ const Brands = styled.div`
     justify-content: center;
   `}
 `;
-const Text = styled.p`
-  ${defaultText}
-  margin: 0;
-`;
 
 export default function Experience(): JSX.Element {
   return (
@@ -48,14 +43,18 @@ export default function Experience(): JSX.Element {
         <H2>This are the companies that I've worked with</H2>
         <Brands>{Array(20).fill(<BrandPlaceholder />)}</Brands>
         <H2>And comments from clients and co-workers</H2>
-        <RecommendationsSlider>
-          {recommendationsData.map(({ message }, index) => (
-            <RecommendationItem key={index}>
-              <Text>
-                {message} {index}
-              </Text>
-            </RecommendationItem>
-          ))}
+        <RecommendationsSlider transform={true}>
+          {recommendationsData.map(
+            ({ author, company, message, position }, index) => (
+              <RecommendationItem
+                key={index}
+                author={author}
+                company={company}
+                message={message}
+                position={position}
+              />
+            )
+          )}
         </RecommendationsSlider>
       </Main>
     </Layout>
