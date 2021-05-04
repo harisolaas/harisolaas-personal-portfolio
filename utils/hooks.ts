@@ -1,4 +1,4 @@
-import { Dispatch, useCallback, useEffect, useReducer, useRef } from "react";
+import React from "react";
 
 interface Action {
   type: string;
@@ -7,9 +7,9 @@ interface Action {
 }
 export type Reducer<State> = (state: State, action: Action) => State;
 
-function useSafeDispatch(dispatch: Dispatch<Action>) {
-  const mounted = useRef(false);
-  useEffect(() => {
+function useSafeDispatch(dispatch: React.Dispatch<Action>) {
+  const mounted = React.useRef(false);
+  React.useEffect(() => {
     mounted.current = true;
 
     return () => {
@@ -17,7 +17,7 @@ function useSafeDispatch(dispatch: Dispatch<Action>) {
     };
   }, []);
 
-  return useCallback(
+  return React.useCallback(
     (action) => (mounted.current ? dispatch(action) : void 0),
     [dispatch]
   );
@@ -26,8 +26,8 @@ function useSafeDispatch(dispatch: Dispatch<Action>) {
 function useSafeReducer<State>(
   reducer: Reducer<State>,
   initialState: State
-): [State, Dispatch<Action>] {
-  const [state, unsafeDispatch] = useReducer(reducer, initialState);
+): [State, React.Dispatch<Action>] {
+  const [state, unsafeDispatch] = React.useReducer(reducer, initialState);
   const dispatch = useSafeDispatch(unsafeDispatch);
 
   return [state, dispatch];

@@ -1,4 +1,3 @@
-import { FC, ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
 import AnimatedClick from "./animated-click";
 
@@ -17,7 +16,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
   children,
   ...otherProps
 }) => {

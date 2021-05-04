@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import AnimatedClick from "../components/animated-click";
@@ -8,7 +9,6 @@ import Layout from "../components/layout";
 import Main from "../components/styled-main";
 import Text from "../components/styled-text";
 import { defaultText } from "../styles/mixins";
-import { useState } from "react";
 
 const ButtonContainer = styled.div`
   float: right;
@@ -67,7 +67,7 @@ const FieldCoordinates: { [key in FIELDS]: [number, number] } = {
 };
 
 export default function Contact(): JSX.Element {
-  const [activeField, setActiveField] = useState(FIELDS.Name);
+  const [activeField, setActiveField] = React.useState(FIELDS.Name);
   const handleFocus = (e) => {
     const {
       target: { id: name },

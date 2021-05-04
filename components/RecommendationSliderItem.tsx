@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Direction } from "./Slider";
 
@@ -15,17 +15,17 @@ const ListItem = styled.li<{ left: string }>`
   width: 100%;
 `;
 
-const RecommendationItem: FC<Props> = ({
+const RecommendationItem: React.FC<Props> = ({
   children,
   direction,
   endTransition,
   slideOut,
 }) => {
-  const [left, setLeft] = useState(`${direction ? "-" : ""}100%`);
-  useEffect(() => {
+  const [left, setLeft] = React.useState(`${direction ? "-" : ""}100%`);
+  React.useEffect(() => {
     setLeft("0");
   }, []);
-  useEffect(() => {
+  React.useEffect(() => {
     slideOut && setLeft(`${direction ? "" : "-"}100%`);
   }, [slideOut]);
 

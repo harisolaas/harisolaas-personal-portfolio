@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { FC } from "react";
 import styled from "styled-components";
 import NavLink from "./nav-link";
 import { defaultText, globalPadding } from "../styles/mixins";
@@ -24,6 +23,7 @@ const LayoutWrapper = styled.div`
   display: flex;
   flex-flow: column;
   min-height: 100vh;
+  padding-bottom: 48px;
   position: relative;
 `;
 const Footer = styled.footer`
@@ -38,7 +38,7 @@ const Footer = styled.footer`
 `;
 
 type LayoutProps = { title?: string };
-const Layout: FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
+const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
   return (
     <LayoutWrapper>
       <Head>

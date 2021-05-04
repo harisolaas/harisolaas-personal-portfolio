@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { firefly } from "../styles/mixins";
 
@@ -14,9 +14,9 @@ const StyledFirefly = styled.div<{
 `;
 
 type FireflyProps = { moveTo: [number, number] };
-const Firefly: FC<FireflyProps> = ({ moveTo }) => {
-  const ref = useRef({} as HTMLDivElement);
-  useEffect(() => {
+const Firefly: React.FC<FireflyProps> = ({ moveTo }) => {
+  const ref = React.useRef({} as HTMLDivElement);
+  React.useEffect(() => {
     const firefly = ref.current;
     const handleTransitionStart = () => {
       firefly.style.animation = `meander 1s infinite linear`;

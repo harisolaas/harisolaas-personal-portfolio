@@ -1,7 +1,6 @@
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import styled, { css } from "styled-components";
-import { FC } from "react";
 import AnimatedClick from "./animated-click";
 import { fireflyAnimationFinalPosition } from "../styles/mixins";
 
@@ -20,7 +19,7 @@ const AnimatedLink = styled(AnimatedClick)<AnimatedLinkProps>`
   ${({ current }) => (current ? forceFireflyFinalPosition : "")}
 `;
 
-const NavLink: FC<LinkProps> = ({ children, href, ...otherProps }) => {
+const NavLink: React.FC<LinkProps> = ({ children, href, ...otherProps }) => {
   const { pathname } = useRouter();
 
   return (

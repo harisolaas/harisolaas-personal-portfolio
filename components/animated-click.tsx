@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FC } from "react";
 import { firefly, fireflyAnimationFinalPosition } from "../styles/mixins";
 
 const Wrapper = styled.span`
@@ -32,7 +31,7 @@ const Container = styled.span`
   position: relative;
 `;
 
-const AnimatedClick: FC = ({ children, ...otherProps }) => {
+const AnimatedClick: React.FC = ({ children, ...otherProps }) => {
   return (
     <Container {...otherProps}>
       <Wrapper>{children}</Wrapper>

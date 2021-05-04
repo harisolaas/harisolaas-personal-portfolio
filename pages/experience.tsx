@@ -5,12 +5,12 @@ import Layout from "../components/layout";
 import Main from "../components/styled-main";
 import RecommendationItem from "../components/RecommendationSliderItem";
 import RecommendationsSlider from "../components/Slider";
-import { defaultText } from "../styles/mixins";
+import Text from "../components/styled-text";
 import media from "../utils/mediaQueries";
 
 const recommendationsData = Array(7).fill({
   author: "John Doe",
-  company: "Litebox",
+  company: "Company",
   message:
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore nisi natus quisquam soluta deleniti quo eligendi quam? Assumenda amet modi eos nobis iusto quibusdam culpa numquam. Rem architecto inventore alias!",
   position: "CEO",
@@ -35,9 +35,20 @@ const Brands = styled.div`
     justify-content: center;
   `}
 `;
-const Text = styled.p`
-  ${defaultText}
-  margin: 0;
+const Comments = styled(H2)`
+  text-align: center;
+`;
+const Message = styled(Text)`
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: justify;
+`;
+const Recommendation = styled.div`
+  margin: auto;
+  max-width: 800px;
+`;
+const Signature = styled(Text)`
+  text-align: end;
 `;
 
 export default function Experience(): JSX.Element {
@@ -47,15 +58,21 @@ export default function Experience(): JSX.Element {
         <H1>Experience</H1>
         <H2>This are the companies that I've worked with</H2>
         <Brands>{Array(20).fill(<BrandPlaceholder />)}</Brands>
-        <H2>And comments from clients and co-workers</H2>
+        <Comments>And comments from clients and co-workers</Comments>
         <RecommendationsSlider>
-          {recommendationsData.map(({ message }, index) => (
-            <RecommendationItem key={index}>
-              <Text>
-                {message} {index}
-              </Text>
-            </RecommendationItem>
-          ))}
+          {recommendationsData.map(
+            ({ author, company, message, position }, index) => (
+              <RecommendationItem key={index}>
+                <Recommendation>
+                  <Message>“{message}”</Message>
+                  <Signature>
+                    <strong>{author}</strong>.<br />
+                    {position}, {company}.
+                  </Signature>
+                </Recommendation>
+              </RecommendationItem>
+            )
+          )}
         </RecommendationsSlider>
       </Main>
     </Layout>
