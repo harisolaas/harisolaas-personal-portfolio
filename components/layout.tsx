@@ -12,6 +12,10 @@ const GlobalNavigation = styled.nav`
 const Header = styled.header`
   ${globalPadding}
   align-items: center;
+  background-image: linear-gradient(
+    ${({ theme }) =>
+      `${theme.colors.background} 70%, ${theme.colors.background}00`}
+  );
   display: flex;
   height: ${({ theme }) => theme.headerHeight};
   justify-content: space-between;
