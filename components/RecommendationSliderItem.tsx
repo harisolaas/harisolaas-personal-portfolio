@@ -1,39 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { Direction } from "./Slider";
 
 interface Props {
-  direction?: Direction;
-  slideOut?: boolean;
-  endTransition?: () => void;
+  width?: number;
 }
 
-const ListItem = styled.li<{ left: string }>`
-  left: ${({ left }) => left};
-  position: relative;
-  transition: all 0.3s linear;
-  width: 100%;
+const ListItem = styled.li<{ width: number }>`
+  display: inline-block;
+  width: ${({ width }) => width}px;
 `;
 
-const RecommendationItem: React.FC<Props> = ({
-  children,
-  direction,
-  endTransition,
-  slideOut,
-}) => {
-  const [left, setLeft] = React.useState(`${direction ? "-" : ""}100%`);
-  React.useEffect(() => {
-    setLeft("0");
-  }, []);
-  React.useEffect(() => {
-    slideOut && setLeft(`${direction ? "" : "-"}100%`);
-  }, [slideOut]);
-
-  return (
-    <ListItem left={left} onTransitionEnd={endTransition}>
-      {children}
-    </ListItem>
-  );
+const RecommendationItem: React.FC<Props> = ({ children, width }) => {
+  return <ListItem width={width}>{children}</ListItem>;
 };
 
 export default RecommendationItem;

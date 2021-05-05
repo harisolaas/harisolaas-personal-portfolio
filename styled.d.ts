@@ -7,6 +7,7 @@ declare module "styled-components" {
       black: string;
       firefly: string;
       primary: string;
+      primaryOff: string;
     };
     fonts: { primary: string; secondary: string };
     footerHeight: string;

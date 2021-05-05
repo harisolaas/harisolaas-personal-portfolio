@@ -1,40 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ButtonNext, ButtonPrev } from "./button-prev-next";
 import ButtonPlayPause from "./button-play-pause";
-// TODO: check if safe reducer is needed
-import { useSafeReducer, Reducer } from "../utils/hooks";
-
-export type Direction = 0 | 1;
-interface State {
-  activeIndex: number;
-  autoplay: boolean;
-  direction: Direction;
-  prevIndex: null | number;
-  slidingOut: boolean;
-}
-
-const reducer: Reducer<State> = (state, action) => {
-  switch (action.type) {
-    case "SLIDE_TO_INDEX":
-      const { index, direction } = action;
-
-      return {
-        ...state,
-        activeIndex: index,
-        direction: direction,
-        prevIndex: state.activeIndex,
-        slidingOut: true,
-      };
-    case "SLIDE_OUT_END":
-      return { ...state, slidingOut: false };
-    case "TOGGLE_AUTOPLAY":
-      return { ...state, autoplay: !state.autoplay };
-
-    default:
-      throw new Error(`Action type ${action.type} is not supported`);
-  }
-};
+import { useResponsiveWidth } from "../utils/hooks";
 
 const ControlButtons = styled.div`
   display: flex;
@@ -42,10 +10,19 @@ const ControlButtons = styled.div`
   margin: auto;
   max-width: 280px;
 `;
-const List = styled.ul`
+const Frame = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
+const List = styled.ul<{ activeIndex: number; itemWidth: number }>`
   list-style: none;
   overflow: hidden;
   padding: 0;
+  transform: translateX(
+    -${({ activeIndex, itemWidth }) => activeIndex * itemWidth}px
+  );
+  transition: all 1s;
+  width: max-content;
 `;
 const NavigationButton = styled.button`
   border: none;
@@ -56,9 +33,12 @@ const NavigationButton = styled.button`
   overflow: hidden;
   padding: 0;
   width: 12px;
+  :disabled {
+    background-color: ${({ theme }) => theme.colors.primaryOff};
+  }
 `;
-const ProgressBar = styled.div<{ collapse: boolean; slidingOut: boolean }>`
-  background-color: ${({ theme }) => theme.colors.primary}55;
+const Progressbar = styled.div<{ collapse: boolean; reset: boolean }>`
+  background-color: ${({ theme }) => theme.colors.primaryOff};
   border-radius: 2px;
   height: ${({ collapse }) => (collapse ? "0px" : "4px")};
   margin: 12px 0;
@@ -74,10 +54,14 @@ const ProgressBar = styled.div<{ collapse: boolean; slidingOut: boolean }>`
     left: 0;
     position: absolute;
     top: 0;
-    transition: width 4.5s linear;
+    transition: width 4.7s linear;
     width: 100%;
-    ${({ slidingOut }) => (slidingOut ? "transition: width 0s; width: 0%" : "")}
+    ${({ reset }) => reset && resetProgressStyles};
   }
+`;
+const resetProgressStyles = css`
+  transition: width 0.1s;
+  width: 0%;
 `;
 const SliderProgressWrapper = styled.div`
   margin: auto;
@@ -85,15 +69,8 @@ const SliderProgressWrapper = styled.div`
 `;
 
 const RecommendationsSlider: React.FC = ({ children }) => {
-  const [state, dispatch] = useSafeReducer(reducer, {
-    activeIndex: 0,
-    autoplay: true,
-    direction: null,
-    prevIndex: null,
-    slidingOut: false,
-  });
-  const { activeIndex, autoplay, direction, prevIndex, slidingOut } = state;
-
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [autoplay, setAutoplay] = React.useState(true);
   let { current: autoplayInterval } = React.useRef(null);
   React.useEffect(() => {
     if (autoplay) {
@@ -106,51 +83,53 @@ const RecommendationsSlider: React.FC = ({ children }) => {
     };
   }, [activeIndex, autoplay]);
 
-  const slideToIndex = (index: number, direction: Direction) => {
-    if (index === activeIndex) return;
-    dispatch({ type: "SLIDE_TO_INDEX", index, direction });
-  };
+  const frameRef = React.useRef();
+  const width = useResponsiveWidth(frameRef);
+
+  const [shouldResetProgressbar, setShouldResetProgressbar] = React.useState(
+    true
+  );
+  React.useEffect(() => {
+    setShouldResetProgressbar(false);
+  }, []);
+
   const handleSlide = (index: number) => {
-    let direction: Direction = index - activeIndex > 0 ? 0 : 1;
     if (index > React.Children.count(children) - 1) {
       index = 0;
-      direction = 0;
     }
     if (index < 0) {
       index = React.Children.count(children) - 1;
-      direction = 1;
     }
-
-    slideToIndex(index, direction);
+    setActiveIndex(index);
+    resetProgressbar();
   };
   const slideToNext = () => {
     handleSlide(activeIndex + 1);
   };
-  const slideOutEnd = () => {
-    dispatch({ type: "SLIDE_OUT_END" });
+  const handleToggleAutoplay = () => {
+    setAutoplay(!autoplay);
+    setShouldResetProgressbar(autoplay);
   };
-  const handleAutoplayToggle = () => {
-    dispatch({ type: "TOGGLE_AUTOPLAY" });
+  const resetProgressbar = () => {
+    setShouldResetProgressbar(true);
+    setTimeout(() => {
+      setShouldResetProgressbar(false);
+    }, 100);
   };
 
   return (
     <div>
-      <List>
-        {React.Children.map(children, (child, index) => {
-          if (!slidingOut && activeIndex === index) {
-            return React.cloneElement(child as React.ReactElement, {
-              direction,
-            });
-          }
-          if (slidingOut && prevIndex === index) {
-            return React.cloneElement(child as React.ReactElement, {
-              direction,
-              slideOut: true,
-              endTransition: slideOutEnd,
-            });
-          }
-        })}
-      </List>
+      <Frame ref={frameRef}>
+        <List activeIndex={activeIndex} itemWidth={width}>
+          {width &&
+            React.Children.map(children, (child, index) => {
+              return React.cloneElement(child as React.ReactElement, {
+                key: index,
+                width,
+              });
+            })}
+        </List>
+      </Frame>
       <SliderProgressWrapper>
         <div>
           {React.Children.map(children, (_, index) => (
@@ -163,12 +142,12 @@ const RecommendationsSlider: React.FC = ({ children }) => {
             </NavigationButton>
           ))}
         </div>
-        <ProgressBar collapse={!autoplay} slidingOut={slidingOut} />
+        <Progressbar collapse={!autoplay} reset={shouldResetProgressbar} />
       </SliderProgressWrapper>
       <ControlButtons>
         <ButtonPrev onClick={() => handleSlide(activeIndex - 1)} />
         <ButtonPlayPause
-          onClick={handleAutoplayToggle}
+          onClick={handleToggleAutoplay}
           status={autoplay ? "pause" : "play"}
         />
         <ButtonNext onClick={slideToNext} />

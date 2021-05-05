@@ -7,6 +7,7 @@ const fallbackSansSerifFonts =
 // Colors
 const black = "#000000";
 const primary = "#eeeeee";
+const primaryOff = "#eeeeee55";
 const background = "#173246";
 const firefly = "#fafec3";
 
@@ -16,6 +17,7 @@ const theme: DefaultTheme = {
     black,
     firefly,
     primary,
+    primaryOff,
   },
   fonts: {
     primary: `Roboto, ${fallbackSansSerifFonts}`,
