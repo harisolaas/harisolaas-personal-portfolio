@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import fonts from "./fonts";
 
 export default createGlobalStyle`
   html,
@@ -19,5 +18,4 @@ export default createGlobalStyle`
   :focus {
     outline: ${({ theme }) => theme.colors.firefly} auto 1px;
   }
-  ${fonts}
 `;

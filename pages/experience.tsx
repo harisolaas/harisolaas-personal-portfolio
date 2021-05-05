@@ -56,7 +56,7 @@ export default function Experience(): JSX.Element {
     <Layout title="Experience">
       <Main>
         <H1>Experience</H1>
-        <H2>This are the companies that I've worked with</H2>
+        <H2>These are the companies and brands that I've worked with</H2>
         <Brands>{Array(20).fill(<BrandPlaceholder />)}</Brands>
         <Comments>And comments from clients and co-workers</Comments>
         <RecommendationsSlider>

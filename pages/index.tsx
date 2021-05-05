@@ -10,14 +10,14 @@ const Content = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   margin: 56px auto 0;
   max-width: 680px;
-  padding: 10px 25px;
+  padding: 25px;
 `;
 const ContentHeader = styled.div`
   display: grid;
   grid-template-columns: 160px auto;
 `;
 const ImageContainer = styled.div`
-  padding: 20px;
+  padding-right: 20px;
 `;
 const StyledImage = styled(Image)`
   border-radius: 50%;
@@ -36,7 +36,7 @@ export default function Home(): JSX.Element {
           <ContentHeader>
             <ImageContainer>
               <StyledImage
-                src="/images/profile.jpg"
+                src="/images/profile.jpeg"
                 alt="Personal picture"
                 height={120}
                 width={120}

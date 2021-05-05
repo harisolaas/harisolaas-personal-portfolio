@@ -30,6 +30,22 @@ const LayoutWrapper = styled.div`
   padding-bottom: 48px;
   position: relative;
 `;
+const Logo = styled.span`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(181deg, #ff803d 0%, #f3c546 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  transition: all 1s;
+  :hover {
+    background: linear-gradient(181deg, #f1e86e 0%, #44bb59 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+`;
 const Footer = styled.footer`
   ${globalPadding}
   align-items: center;
@@ -53,7 +69,9 @@ const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
       </Head>
       <Header>
         <div>
-          <NavLink href="/">HS</NavLink>
+          <NavLink href="/">
+            <Logo>HS</Logo>
+          </NavLink>
         </div>
         <GlobalNavigation>
           <NavLink href="/skills">Skills</NavLink>|
