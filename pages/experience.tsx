@@ -3,10 +3,10 @@ import H1 from "../components/styled-h1";
 import H2 from "../components/styled-h2";
 import Layout from "../components/layout";
 import Main from "../components/styled-main";
-import RecommendationItem from "../components/RecommendationSliderItem";
-import RecommendationsSlider from "../components/Slider";
+import RecommendationItem from "../components/recommendation-slider-item";
+import RecommendationsSlider from "../components/slider";
 import Text from "../components/styled-text";
-import media from "../utils/mediaQueries";
+import media from "../utils/media-queries";
 
 const recommendationsData = Array(7).fill({
   author: "John Doe",

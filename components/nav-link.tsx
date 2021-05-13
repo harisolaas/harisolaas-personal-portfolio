@@ -4,9 +4,9 @@ import styled, { css } from "styled-components";
 import AnimatedClick from "./animated-click";
 import { fireflyAnimationFinalPosition } from "../styles/mixins";
 
-type AnimatedLinkProps = {
+interface AnimatedLinkProps {
   current: boolean;
-};
+}
 const forceFireflyFinalPosition = css`
   > span {
     text-shadow: ${({ theme }) => theme.textShadow};

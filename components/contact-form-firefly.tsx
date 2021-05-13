@@ -13,7 +13,9 @@ const StyledFirefly = styled.div<{
   transition: all 2s linear;
 `;
 
-type FireflyProps = { moveTo: [number, number] };
+interface FireflyProps {
+  moveTo: [number, number];
+}
 const Firefly: React.FC<FireflyProps> = ({ moveTo }) => {
   const ref = React.useRef({} as HTMLDivElement);
   React.useEffect(() => {

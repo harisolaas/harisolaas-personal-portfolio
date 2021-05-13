@@ -14,7 +14,7 @@ const Header = styled.header`
   align-items: center;
   background-image: linear-gradient(
     ${({ theme }) =>
-      `${theme.colors.background} 70%, ${theme.colors.background}00`}
+      `${theme.colors.background} 65%, ${theme.colors.background}33`}
   );
   display: flex;
   height: ${({ theme }) => theme.headerHeight};
@@ -23,7 +23,6 @@ const Header = styled.header`
   width: 100%;
 `;
 const LayoutWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   flex-flow: column;
   min-height: 100vh;
@@ -57,7 +56,9 @@ const Footer = styled.footer`
   width: 100%;
 `;
 
-type LayoutProps = { title?: string };
+interface LayoutProps {
+  title?: string;
+}
 const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
   return (
     <LayoutWrapper>

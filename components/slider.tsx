@@ -71,24 +71,23 @@ const SliderProgressWrapper = styled.div`
 const RecommendationsSlider: React.FC = ({ children }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [autoplay, setAutoplay] = React.useState(true);
-  let { current: autoplayInterval } = React.useRef(null);
+  const autoplayIntervalRef = React.useRef(null);
   React.useEffect(() => {
     if (autoplay) {
-      autoplayInterval = setTimeout(() => {
+      autoplayIntervalRef.current = setTimeout(() => {
         slideToNext();
       }, 5000);
     }
     return () => {
-      clearInterval(autoplayInterval);
+      clearInterval(autoplayIntervalRef.current);
     };
   }, [activeIndex, autoplay]);
 
   const frameRef = React.useRef();
   const width = useResponsiveWidth(frameRef);
 
-  const [shouldResetProgressbar, setShouldResetProgressbar] = React.useState(
-    true
-  );
+  const [shouldResetProgressbar, setShouldResetProgressbar] =
+    React.useState(true);
   React.useEffect(() => {
     setShouldResetProgressbar(false);
   }, []);
@@ -103,9 +102,6 @@ const RecommendationsSlider: React.FC = ({ children }) => {
     setActiveIndex(index);
     resetProgressbar();
   };
-  const slideToNext = () => {
-    handleSlide(activeIndex + 1);
-  };
   const handleToggleAutoplay = () => {
     setAutoplay(!autoplay);
     setShouldResetProgressbar(autoplay);
@@ -115,6 +111,9 @@ const RecommendationsSlider: React.FC = ({ children }) => {
     setTimeout(() => {
       setShouldResetProgressbar(false);
     }, 100);
+  };
+  const slideToNext = () => {
+    handleSlide(activeIndex + 1);
   };
 
   return (

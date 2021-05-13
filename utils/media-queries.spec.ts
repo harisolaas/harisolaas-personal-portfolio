@@ -1,4 +1,4 @@
-import media from "./mediaQueries";
+import media from "./media-queries";
 
 describe("'media' function", () => {
   it("should wrap the provided styles with a media query when executed", () => {
