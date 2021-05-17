@@ -7,7 +7,7 @@ import { calculateOptimalPathBetweenDigits } from "../utils/dodecahedron";
 // calculated in rotation angles for axis x and turns for axes, y and z
 // respectively
 const facePositions = [
-  [90, 0, 0],
+  [270, 0, 0],
   [333.435, 0.1, 0],
   [333.435, 0.3, 0],
   [333.435, 0.5, 0],
@@ -18,7 +18,7 @@ const facePositions = [
   [26.565, 0.4, 0.5],
   [26.565, 0.6, 0.5],
   [26.565, 0.8, 0.5],
-  [270, 0, 0],
+  [90, 0, 0],
 ];
 
 const Label = styled.span`

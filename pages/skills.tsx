@@ -6,6 +6,7 @@ import Main from "../components/styled-main";
 import Text from "../components/styled-text";
 import { defaultText } from "../styles/mixins";
 import Dodecahedron from "../components/dodecahedron";
+import media from "../utils/media-queries";
 
 const technologies = [
   "React JS",
@@ -21,16 +22,41 @@ const technologies = [
   "SCSS",
   "React Native",
 ];
-const List = styled.ul``;
-const ListItem = styled.li<{ active: boolean }>`
+const List = styled.ul`
+  list-style: none;
+  margin: -12px;
+  padding: 0;
+`;
+const ListGrid = styled.div`
+  display: grid;
+  ${media("medium")`
+    grid-template-columns: 40% 60%;
+  `}
+`;
+const ListItem = styled.li`
+  float: left;
+  padding: 12px;
+`;
+const TechButton = styled.button<{ active: boolean }>`
   ${defaultText}
-  line-height: 1.5;
-  text-decoration: ${({ active }) => (active ? "underline" : "none")};
+  background-color: ${({ active, theme }) =>
+    active ? theme.colors.primary : theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 8px;
+  color: ${({ active, theme }) =>
+    active ? theme.colors.background : theme.colors.primary};
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 12px;
+  transition: all 0.3s;
+  :hover {
+    box-shadow: 0px 0 5px 0.5px ${({ theme }) => theme.colors.firefly};
+  }
 `;
 
 export default function Skills(): JSX.Element {
   const [activeTechIndex, setActiveTechIndex] = React.useState(0);
-  const handleTechChange = (index) => setActiveTechIndex(index);
+  const handleTechChange = (index: number) => setActiveTechIndex(index);
   return (
     <Layout title="Skills">
       <Main>
@@ -40,23 +66,25 @@ export default function Skills(): JSX.Element {
           simple solutions to complex challenges. The main languages and
           technologies I work with are:
         </Text>
-        <List>
-          {technologies.map((technology, index) => (
-            <ListItem
-              active={index === activeTechIndex}
-              key={technology}
-              onClick={() => handleTechChange(index)}
-            >
-              {technology}
-            </ListItem>
-          ))}
-        </List>
-
-        <Dodecahedron
-          activeLabelIndex={activeTechIndex}
-          labels={technologies}
-          onFaceClick={handleTechChange}
-        />
+        <ListGrid>
+          <List>
+            {technologies.map((technology, index) => (
+              <ListItem key={technology}>
+                <TechButton
+                  active={index === activeTechIndex}
+                  onClick={() => handleTechChange(index)}
+                >
+                  {technology}
+                </TechButton>
+              </ListItem>
+            ))}
+          </List>
+          <Dodecahedron
+            activeLabelIndex={activeTechIndex}
+            labels={technologies}
+            onFaceClick={handleTechChange}
+          />
+        </ListGrid>
       </Main>
     </Layout>
   );
