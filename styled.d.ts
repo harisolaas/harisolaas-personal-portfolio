@@ -8,10 +8,11 @@ declare module "styled-components" {
       firefly: string;
       primary: string;
       primaryOff: string;
+      shadow: string;
     };
     fonts: { primary: string; secondary: string };
-    footerHeight: string;
-    headerHeight: string;
+    footerHeight: number;
+    headerHeight: number;
     textShadow: string;
   }
 }

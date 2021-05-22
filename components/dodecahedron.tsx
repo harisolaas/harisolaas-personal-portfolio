@@ -26,6 +26,7 @@ const Label = styled.span`
   text-align: center;
 `;
 const Face = styled.div`
+  --edge: 4em;
   align-items: center;
   background: radial-gradient(circle at 70% 70%, #f3c546, #ff803d);
   clip-path: polygon(
@@ -43,9 +44,6 @@ const Face = styled.div`
   position: absolute;
   transition: all 0.3s;
   width: var(--edge);
-  :hover {
-    --radius: 2.61em;
-  }
   :nth-child(n + 7):nth-child(-n + 11) {
     ${Label} {
       transform: rotateZ(180deg);
@@ -58,7 +56,7 @@ const Face = styled.div`
     ([x, y, z], i) => css`
       :nth-child(${i + 1}) {
         transform: rotateY(${y}turn) rotateX(${x}deg) rotateZ(${z}turn)
-          translateZ(var(--radius));
+          translateZ(2.61em);
       }
     `
   )}
@@ -67,10 +65,7 @@ const Polyhedron = styled.div<{
   rotateX: number;
   rotateY: number;
 }>`
-  --edge: 4em;
-  --radius: 2.61em;
   box-shadow: 0 0 2px 5px crimson;
-  font-size: 8vmin;
   left: 50%;
   position: absolute;
   top: 50%;
@@ -78,20 +73,18 @@ const Polyhedron = styled.div<{
     rotateY(-${({ rotateY }) => rotateY.toFixed(4)}turn);
   transform-style: preserve-3d;
   transition: all 1s;
-  :hover {
-    --radius: 2.8em;
-  }
 `;
 const Scene = styled.div`
-  --size: 260px;
+  --size: 7em;
+  font-size: 10vmin;
   min-height: var(--size);
   min-width: var(--size);
   position: relative;
   ${media("medium")`
-    --size: 500px;
+    font-size: 8vmin;
   `}
   ${media("large")`
-    --size: 540px;
+    font-size: 10vmin;
   `}
 `;
 

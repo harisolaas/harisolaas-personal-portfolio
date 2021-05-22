@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 import H1 from "../components/styled-h1";
@@ -22,15 +23,22 @@ const technologies = [
   "SCSS",
   "React Native",
 ];
+const DodecahedronContainer = styled.div`
+  grid-column-start: 3;
+  grid-row: 1 / 3;
+`;
 const List = styled.ul`
+  flex-wrap: wrap;
+  grid-column: 1 / 3;
   list-style: none;
-  margin: -12px;
+  margin: 0 -12px;
   padding: 0;
 `;
 const ListGrid = styled.div`
   display: grid;
   ${media("medium")`
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 3fr 2fr 8fr;
+    grid-template-rows: 5fr 3fr;
   `}
 `;
 const ListItem = styled.li`
@@ -79,11 +87,22 @@ export default function Skills(): JSX.Element {
               </ListItem>
             ))}
           </List>
-          <Dodecahedron
-            activeLabelIndex={activeTechIndex}
-            labels={technologies}
-            onFaceClick={handleTechChange}
-          />
+          <DodecahedronContainer>
+            <Dodecahedron
+              activeLabelIndex={activeTechIndex}
+              labels={technologies}
+              onFaceClick={handleTechChange}
+            />
+          </DodecahedronContainer>
+          <div>
+            <Image
+              src="/images/tapir.webp"
+              alt="Tapir illustration"
+              height={250}
+              priority
+              width={259}
+            />
+          </div>
         </ListGrid>
       </Main>
     </Layout>
