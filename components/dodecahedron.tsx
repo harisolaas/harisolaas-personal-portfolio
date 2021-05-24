@@ -28,7 +28,7 @@ const Label = styled.span`
 const Face = styled.div`
   --edge: 4em;
   align-items: center;
-  background: radial-gradient(circle at 70% 70%, #f3c546, #ff803d);
+  background: radial-gradient(circle at 70% 70%, #44bb59, #f1e86e);
   clip-path: polygon(
     50% 0%,
     2.4472% 34.5492%,
