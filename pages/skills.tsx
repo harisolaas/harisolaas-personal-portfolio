@@ -24,42 +24,70 @@ const technologies = [
   "React Native",
 ];
 const DodecahedronContainer = styled.div`
-  grid-column-start: 3;
-  grid-row: 1 / 3;
+  grid-row: 1 / 2;
+  margin-bottom: 12px;
+  ${media("medium")`
+    grid-column-start: 3;
+    grid-row: 1 / 3;
+    margin-bottom: 0;
+  `}
 `;
 const List = styled.ul`
+  display: flex;
   flex-wrap: wrap;
-  grid-column: 1 / 3;
+  justify-content: space-between;
   list-style: none;
-  margin: 0 -12px;
+  margin: 0 -12px 12px;
   padding: 0;
+  ${media("medium")`
+    display: block;
+    grid-column: 1 / 3;
+    margin-bottom: 0;
+  `}
 `;
 const ListGrid = styled.div`
   display: grid;
   ${media("medium")`
     grid-template-columns: 3fr 2fr 8fr;
-    grid-template-rows: 5fr 3fr;
+    grid-template-rows: 5fr auto;
+    margin-top: 24px;
   `}
 `;
 const ListItem = styled.li`
-  float: left;
-  padding: 12px;
+  padding: 8px;
+  ${media("medium")`
+    float: left;
+    padding: 12px;
+  `}
+`;
+const Tapir = styled.div`
+  margin: 24px auto 0;
+  max-width: 176px;
+  ${media("medium")`
+    margin: unset;
+    max-width: unset;
+  `}
 `;
 const TechButton = styled.button<{ active: boolean }>`
   ${defaultText}
   background-color: ${({ active, theme }) =>
     active ? theme.colors.primary : theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 8px;
+  border-radius: 4px;
   color: ${({ active, theme }) =>
     active ? theme.colors.background : theme.colors.primary};
   cursor: pointer;
-  font-size: 1.2rem;
-  padding: 12px;
+  font-size: 1rem;
+  padding: 4px 8px;
   transition: all 0.3s;
   :hover {
     box-shadow: 0px 0 5px 0.5px ${({ theme }) => theme.colors.firefly};
   }
+  ${media("medium")`
+    border-radius: 8px;
+    font-size: 1.2rem;
+    padding: 12px;
+  `}
 `;
 
 export default function Skills(): JSX.Element {
@@ -70,9 +98,10 @@ export default function Skills(): JSX.Element {
       <Main>
         <H1>Skills</H1>
         <Text>
-          I'm your <strong>Java Script</strong> specialist, I love to find
-          simple solutions to complex challenges. The main languages and
-          technologies I work with are:
+          I'm your <strong>Java Script specialist</strong>, I love to find
+          simple solutions to complex challenges.
+          <br />
+          The main languages and technologies I work with are:
         </Text>
         <ListGrid>
           <List>
@@ -94,7 +123,7 @@ export default function Skills(): JSX.Element {
               onFaceClick={handleTechChange}
             />
           </DodecahedronContainer>
-          <div>
+          <Tapir>
             <Image
               src="/images/tapir.webp"
               alt="Tapir illustration"
@@ -102,7 +131,7 @@ export default function Skills(): JSX.Element {
               priority
               width={259}
             />
-          </div>
+          </Tapir>
         </ListGrid>
       </Main>
     </Layout>

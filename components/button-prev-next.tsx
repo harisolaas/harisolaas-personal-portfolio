@@ -46,12 +46,12 @@ const PrevButton = styled(Button)`
   }
 `;
 
-export const ButtonNext: React.FC<ButtonPrevNextProps> = ({
-  children,
-  ...props
-}) => <NextButton {...props}>{children || "Next"}</NextButton>;
+const ButtonNext: React.FC<ButtonPrevNextProps> = ({ children, ...props }) => (
+  <NextButton {...props}>{children || "Next"}</NextButton>
+);
 
-export const ButtonPrev: React.FC<ButtonPrevNextProps> = ({
-  children,
-  ...props
-}) => <PrevButton {...props}>{children || "Previous"}</PrevButton>;
+const ButtonPrev: React.FC<ButtonPrevNextProps> = ({ children, ...props }) => (
+  <PrevButton {...props}>{children || "Previous"}</PrevButton>
+);
+
+export { ButtonNext, ButtonPrev };
