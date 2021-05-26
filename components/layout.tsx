@@ -3,13 +3,47 @@ import Image from "next/image";
 import styled from "styled-components";
 import AnimatedClick from "./animated-click";
 import NavLink from "./nav-link";
+import ButtonToggleNav from "./toggle-nav-button";
 import { defaultText, globalPadding } from "../styles/mixins";
+import media from "../utils/media-queries";
+import React from "react";
 
-const GlobalNavigation = styled.nav`
+const ButtonToggleNavWrapper = styled.div`
+  ${media("medium")`
+    display: none;
+  `}
+`;
+const GlobalNavigation = styled.nav<{ isOpen: boolean }>`
+  ${globalPadding}
+  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
-  justify-content: space-between;
-  width: 280px;
-  ${defaultText}
+  flex-flow: column;
+  height: calc(100vh - 48px);
+  left: ${({ isOpen }) => (isOpen ? 0 : 100)}%;
+  position: absolute;
+  top: 48px;
+  transition: all 0.3s;
+  width: 100%;
+  ${media("medium")`
+    background-color: unset;
+    flex-flow: row;
+    height: auto;
+    justify-content: space-between;
+    padding: 0;
+    position: static;
+    width: 280px;
+  `}
+  a {
+    ${defaultText}
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
+    font-size: 1.5rem;
+    margin-top: 24px;
+    ${media("medium")`
+      border-bottom: none;
+      font-size: 1rem;
+      margin-top: 0;
+    `}
+  }
 `;
 const Header = styled.header`
   ${globalPadding}
@@ -19,7 +53,7 @@ const Header = styled.header`
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
   ::before {
     background-image: linear-gradient(
       ${({ theme }) =>
@@ -55,6 +89,9 @@ const Logo = styled.span`
     -webkit-background-clip: text;
   }
 `;
+const LogoWrapper = styled.span`
+  z-index: 1;
+`;
 const Footer = styled.footer`
   ${globalPadding}
   align-items: center;
@@ -70,6 +107,8 @@ interface LayoutProps {
   title?: string;
 }
 const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
+  const [isNavOpen, setIsNavOpen] = React.useState(false);
+
   return (
     <LayoutWrapper>
       <Head>
@@ -79,16 +118,22 @@ const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header>
-        <div>
+        <LogoWrapper>
           <NavLink href="/">
             <Logo>HS</Logo>
           </NavLink>
-        </div>
-        <GlobalNavigation>
-          <NavLink href="/skills">Skills</NavLink>|
-          <NavLink href="/experience">Experience</NavLink>|
+        </LogoWrapper>
+        <GlobalNavigation isOpen={isNavOpen}>
+          <NavLink href="/skills">Skills</NavLink>
+          <NavLink href="/experience">Experience</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </GlobalNavigation>
+        <ButtonToggleNavWrapper>
+          <ButtonToggleNav
+            isNavOpen={isNavOpen}
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          />
+        </ButtonToggleNavWrapper>
       </Header>
       {children}
       <Footer>
