@@ -42,17 +42,14 @@ const Brands = styled.ul`
   flex-wrap: wrap;
   justify-content: space-between;
   list-style: none;
-  margin: 0;
+  margin: 0 0 24px;
   padding: 0;
-`;
-const Comments = styled(H2)`
-  text-align: center;
 `;
 const BackgroundImageContainer = styled.div`
   position: relative;
 `;
 const BackgroundImageWrapper = styled.div`
-  max-width: 100px;
+  max-width: 50%;
   position: fixed;
   right: 0;
   top: 48px;
@@ -64,6 +61,31 @@ const Main = styled(DefaultMain)`
   > * {
     position: relative;
   }
+  > h1,
+  > h2 {
+    text-align: center;
+    text-shadow: 1px 1px 3px ${({ theme }) => theme.colors.background};
+  }
+  > h1 {
+    margin-top: 76px;
+  }
+  > h2:first-of-type {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  ${media("medium")`
+    > h1,
+    > h2:first-of-type {
+      text-align: left;
+    }
+    > h1 {
+      margin-top: unset;
+    }
+    > h2:first-of-type {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+  `}
 `;
 const Message = styled(Text)`
   font-size: 1.1rem;
@@ -100,7 +122,7 @@ export default function Experience(): JSX.Element {
             <BrandItem key={url} brand={name} url={url} />
           ))}
         </Brands>
-        <Comments>And comments from clients and co-workers</Comments>
+        <H2>And comments from clients and co-workers</H2>
         <RecommendationsSlider>
           {recommendationsData.map(
             ({ author, company, message, position }, index) => (

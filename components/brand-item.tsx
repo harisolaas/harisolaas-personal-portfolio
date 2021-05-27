@@ -1,5 +1,8 @@
+import React from "react";
 import styled from "styled-components";
 import AnimatedClick from "../components/animated-click";
+import { useResponsiveWidth } from "../utils/hooks";
+import media from "../utils/media-queries";
 import {
   calculateTypographyDimentions,
   TypographyDimentions,
@@ -15,14 +18,20 @@ const BrandName = styled.div<TypographyDimentions>`
 const Item = styled.li`
   border-radius: 8px;
   box-shadow: -2px 2px 3px 2px ${({ theme }) => theme.colors.shadow};
-  height: 120px;
-  margin: 16px;
+  font-size: 0.7rem;
+  height: 114px;
+  margin: 16px 0;
   padding: 8px;
-  transition: all 0.5s;
-  width: 180px;
+  width: 45%;
   :hover {
     box-shadow: inset -2px 2px 3px 2px ${({ theme }) => theme.colors.shadow};
   }
+  ${media("medium")`
+    font-size: 1rem;
+    height: 120px;
+    margin: 16px;
+    width: 180px;
+  `}
 `;
 
 interface BrandItemProps {
@@ -30,16 +39,22 @@ interface BrandItemProps {
   url: string;
 }
 const BrandItem: React.FC<BrandItemProps> = ({ brand, url }) => {
-  const typographyDimentions = calculateTypographyDimentions(
-    {
-      height: 84,
-      width: 164,
-    },
-    brand
+  const itemRef = React.useRef();
+  const width = useResponsiveWidth(itemRef) - 16;
+  const typographyDimentions = React.useMemo(
+    () =>
+      calculateTypographyDimentions(
+        {
+          height: 84,
+          width,
+        },
+        brand
+      ),
+    [brand, width]
   );
 
   return (
-    <Item>
+    <Item ref={itemRef}>
       <a href={`https://${url}/`} target="_blank" rel="noopener noreferrer">
         <BrandName {...typographyDimentions}>{brand}</BrandName>
         <AnimatedClick>{url}</AnimatedClick>

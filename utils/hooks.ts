@@ -2,6 +2,7 @@ import React from "react";
 
 function debounce(callback: () => void, wait: number) {
   let timeout: NodeJS.Timeout;
+
   return function () {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
@@ -14,15 +15,17 @@ function useResponsiveWidth(
   componentRef: React.MutableRefObject<HTMLElement>
 ): number {
   const [width, setWidth] = React.useState(0);
-  const debouncedSetWidth = debounce(() => {
-    if (componentRef.current) {
-      setWidth(componentRef.current.offsetWidth);
-    }
-  }, 100);
+
   React.useEffect(() => {
+    const debouncedSetWidth = debounce(() => {
+      if (componentRef.current) {
+        setWidth(componentRef.current.offsetWidth);
+      }
+    }, 100);
     setWidth(componentRef.current.offsetWidth);
     window.addEventListener("resize", debouncedSetWidth);
-  }, []);
+  }, [componentRef]);
+
   return width;
 }
 

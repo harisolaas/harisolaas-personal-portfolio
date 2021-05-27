@@ -72,36 +72,30 @@ const RecommendationsSlider: React.FC = ({ children }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [autoplay, setAutoplay] = React.useState(true);
   const autoplayIntervalRef = React.useRef(null);
-  React.useEffect(() => {
-    if (autoplay) {
-      autoplayIntervalRef.current = setTimeout(() => {
-        slideToNext();
-      }, 5000);
-    }
-    return () => {
-      clearInterval(autoplayIntervalRef.current);
-    };
-  }, [activeIndex, autoplay]);
 
   const frameRef = React.useRef();
   const width = useResponsiveWidth(frameRef);
 
   const [shouldResetProgressbar, setShouldResetProgressbar] =
     React.useState(true);
+
   React.useEffect(() => {
     setShouldResetProgressbar(false);
   }, []);
 
-  const handleSlide = (index: number) => {
-    if (index > React.Children.count(children) - 1) {
-      index = 0;
-    }
-    if (index < 0) {
-      index = React.Children.count(children) - 1;
-    }
-    setActiveIndex(index);
-    resetProgressbar();
-  };
+  const handleSlide = React.useCallback(
+    (index: number) => {
+      if (index > React.Children.count(children) - 1) {
+        index = 0;
+      }
+      if (index < 0) {
+        index = React.Children.count(children) - 1;
+      }
+      setActiveIndex(index);
+      resetProgressbar();
+    },
+    [children]
+  );
   const handleToggleAutoplay = () => {
     setAutoplay(!autoplay);
     setShouldResetProgressbar(autoplay);
@@ -112,9 +106,20 @@ const RecommendationsSlider: React.FC = ({ children }) => {
       setShouldResetProgressbar(false);
     }, 100);
   };
-  const slideToNext = () => {
+  const slideToNext = React.useCallback(() => {
     handleSlide(activeIndex + 1);
-  };
+  }, [activeIndex, handleSlide]);
+
+  React.useEffect(() => {
+    if (autoplay) {
+      autoplayIntervalRef.current = setTimeout(() => {
+        slideToNext();
+      }, 5000);
+    }
+    return () => {
+      clearInterval(autoplayIntervalRef.current);
+    };
+  }, [activeIndex, autoplay, slideToNext]);
 
   return (
     <div>
