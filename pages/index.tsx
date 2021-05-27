@@ -106,7 +106,7 @@ export default function Home(): JSX.Element {
           <PresentationHeader>
             <AvatarContainer>
               <Avatar
-                src="/images/profile.jpeg"
+                src="/images/avatar.webp"
                 alt="Personal picture"
                 height={120}
                 width={120}

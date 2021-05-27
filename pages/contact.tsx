@@ -2,132 +2,90 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import AnimatedClick from "../components/animated-click";
-import Button from "../components/button";
-import Firefly from "../components/contact-form-firefly";
 import H1 from "../components/styled-h1";
 import Layout from "../components/layout";
 import Main from "../components/styled-main";
 import Text from "../components/styled-text";
-import { defaultText } from "../styles/mixins";
+import media from "../utils/media-queries";
 
-const ButtonContainer = styled.div`
-  float: right;
-`;
-const Content = styled.div`
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
+  ${media("large")`
+    grid-template-columns: 50% 50%;
+  `}
 `;
 const Email = styled.a`
   font-style: italic;
-`;
-const Form = styled.form`
-  position: relative;
+  font-weight: bold;
 `;
 const ImageContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  margin: 36px auto 0;
+  ${media("medium")`
+    margin: 48px auto 0;
+    max-width: 60%;
+  `}
+  ${media("large")`
+    display: flex;
+    grid-row: 1 / 2;
+    justify-content: flex-end;
+    margin: 0 auto 0 0;
+    max-width: unset;
+  `}
 `;
-const Input = styled.input`
-  ${defaultText}
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-bottom-color: ${({ theme }) => theme.colors.primary};
-  padding: 12px 8px 4px;
-  transition: all 0.3s;
-  width: 100%;
-  :focus {
-    border-color: ${({ theme }) => theme.colors.firefly};
-    outline-style: solid;
+const TextContainer = styled.div`
+  flex-flow: column;
+  margin: 0 auto;
+  max-width: 440px;
+  text-align: center;
+  ${media("large")`
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  `}
+  h1 {
+    margin-top: 48px;
+    ${media("large")`
+      margin-top: 108px;
+    `}
+  }
+  ${Text} {
+    ${media("medium")`
+      font-size: 1.4rem;
+      line-height: 1.9;
+      margin: 0;
+    `}
   }
 `;
-const InputGroup = styled.div`
-  margin-bottom: 20px;
-`;
-const Label = styled.label`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.secondary};
-  font-size: 0.8rem;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-`;
-const Textarea = styled(Input.withComponent("textarea"))`
-  resize: none;
-`;
-
-export enum FIELDS {
-  Name = "Name",
-  Email = "Email",
-  Message = "Message",
-}
-
-const FieldCoordinates: { [key in FIELDS]: [number, number] } = {
-  [FIELDS.Name]: [54, 6],
-  [FIELDS.Email]: [54, 87],
-  [FIELDS.Message]: [78, 168],
-};
 
 export default function Contact(): JSX.Element {
-  const [activeField, setActiveField] = React.useState(FIELDS.Name);
-  const handleFocus = (e) => {
-    const {
-      target: { id: name },
-    } = e;
-    setActiveField(name);
-  };
-
   return (
     <Layout title="Contact">
       <Main>
-        <Content>
-          <div>
+        <Grid>
+          <TextContainer>
             <H1>Contact me!</H1>
             <Text>
-              Want to get in touch? You can email me at{" "}
+              Want to get in touch? You can email me at
+              <br />
               <Email href="mailto:dev@harisolaas.com">
                 <AnimatedClick>dev@harisolaas.com</AnimatedClick>
-              </Email>{" "}
-              or leave your message bellow.
+              </Email>
+              .<br />
+              Or connect with me on LinkedIn
+              <br />
+              <Email
+                href="https://www.linkedin.com/in/harisolaas/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AnimatedClick>linkedin.com/in/harisolaas</AnimatedClick>
+              </Email>
+              .
             </Text>
-            <Form id="contact-form" action="">
-              <InputGroup>
-                <Label htmlFor={FIELDS.Name}>Name *</Label>
-                <Input
-                  id={FIELDS.Name}
-                  type="text"
-                  required
-                  onFocus={handleFocus}
-                />
-              </InputGroup>
-              <InputGroup>
-                <Label htmlFor={FIELDS.Email}>Email *</Label>
-                <Input
-                  id={FIELDS.Email}
-                  type="email"
-                  required
-                  onFocus={handleFocus}
-                />
-              </InputGroup>
-              <InputGroup>
-                <Label htmlFor={FIELDS.Message}>Message *</Label>
-                <Textarea
-                  id={FIELDS.Message}
-                  rows={5}
-                  required
-                  onFocus={handleFocus}
-                />
-              </InputGroup>
-              <ButtonContainer>
-                <Button form="contact-form" type="submit">
-                  Send
-                </Button>
-              </ButtonContainer>
-              <Firefly moveTo={FieldCoordinates[FIELDS[activeField]]} />
-            </Form>
-          </div>
+          </TextContainer>
           <ImageContainer>
-            <Image height={600} width={499} src="/images/oso-hormiguero.webp" />
+            <Image height={796} width={662} src="/images/oso-hormiguero.webp" />
           </ImageContainer>
-        </Content>
+        </Grid>
       </Main>
     </Layout>
   );
