@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const ListItem = styled.li<{ width: number }>`
   display: inline-block;
+  padding: 0 8px;
   width: ${({ width }) => width}px;
 `;
 

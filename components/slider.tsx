@@ -15,6 +15,8 @@ const Frame = styled.div`
   overflow: hidden;
 `;
 const List = styled.ul<{ activeIndex: number; itemWidth: number }>`
+  align-items: flex-start;
+  display: flex;
   list-style: none;
   overflow: hidden;
   padding: 0;
@@ -68,7 +70,13 @@ const SliderProgressWrapper = styled.div`
   width: fit-content;
 `;
 
-const RecommendationsSlider: React.FC = ({ children }) => {
+interface RecommendationsSliderProps {
+  onSlide: () => void;
+}
+const RecommendationsSlider: React.FC<RecommendationsSliderProps> = ({
+  children,
+  onSlide,
+}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [autoplay, setAutoplay] = React.useState(true);
   const autoplayIntervalRef = React.useRef(null);
@@ -93,8 +101,9 @@ const RecommendationsSlider: React.FC = ({ children }) => {
       }
       setActiveIndex(index);
       resetProgressbar();
+      onSlide();
     },
-    [children]
+    [children, onSlide]
   );
   const handleToggleAutoplay = () => {
     setAutoplay(!autoplay);
@@ -114,7 +123,7 @@ const RecommendationsSlider: React.FC = ({ children }) => {
     if (autoplay) {
       autoplayIntervalRef.current = setTimeout(() => {
         slideToNext();
-      }, 5000);
+      }, 20000);
     }
     return () => {
       clearInterval(autoplayIntervalRef.current);
