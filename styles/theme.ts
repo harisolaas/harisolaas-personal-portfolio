@@ -9,7 +9,7 @@ const background = "#173246";
 const black = "#000000";
 const firefly = "#fafec3";
 const primary = "#eeeeee";
-const primaryOff = "#eeeeee55";
+const primaryOff = "#eeeeee77";
 const shadow = "#0e1e2b";
 
 const theme: DefaultTheme = {

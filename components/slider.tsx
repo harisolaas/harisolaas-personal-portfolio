@@ -27,6 +27,7 @@ const List = styled.ul<{ activeIndex: number; itemWidth: number }>`
   width: max-content;
 `;
 const NavigationButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary};
   border: none;
   border-radius: 50%;
   color: transparent;
@@ -56,7 +57,7 @@ const Progressbar = styled.div<{ collapse: boolean; reset: boolean }>`
     left: 0;
     position: absolute;
     top: 0;
-    transition: width 4.7s linear;
+    transition: width 20s linear;
     width: 100%;
     ${({ reset }) => reset && resetProgressStyles};
   }
