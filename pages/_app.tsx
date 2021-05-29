@@ -1,7 +1,6 @@
 import { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/global-style";
-import "../styles/keyframes.css";
 import "../styles/fonts.css";
 import SvgFilters from "../styles/svg-filters";
 import theme from "../styles/theme";

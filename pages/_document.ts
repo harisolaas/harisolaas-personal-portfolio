@@ -1,4 +1,4 @@
-import Document, { DocumentContext } from "next/document";
+import Document, { DocumentContext, Html } from "next/document";
 import React from "react";
 import { ServerStyleSheet } from "styled-components";
 
@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
-        styles: React.createElement(React.Fragment, {}, [
+        styles: React.createElement(Html, { lang: "en" }, [
           initialProps.styles,
           sheet.getStyleElement(),
         ]),

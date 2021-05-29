@@ -9,7 +9,7 @@ describe("'media' function", () => {
     `;
 
     expect((result as string[]).join("").split("{")[0].trim()).toEqual(
-      "@media (min-width: 768px)"
+      "@media (min-width:768px)"
     );
     expect((result as string[])[result.length - 1].trim()).toEqual("}");
   });
