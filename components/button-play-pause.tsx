@@ -13,7 +13,6 @@ const Button = styled.button<{ status: Status }>`
   border: 2px solid ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   color: transparent;
-  filter: url(#round);
   height: 36px;
   overflow: hidden;
   padding: 0;
@@ -23,6 +22,7 @@ const Button = styled.button<{ status: Status }>`
   ::before {
     background-color: ${({ theme }) => theme.colors.primary};
     content: "";
+    filter: url(#round);
     height: 43%;
     left: 28.5%;
     margin: auto;

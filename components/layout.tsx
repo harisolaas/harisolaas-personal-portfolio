@@ -55,12 +55,10 @@ const Header = styled.header`
   width: 100%;
   z-index: 3;
   ::before {
-    background-image: linear-gradient(
-      ${({ theme }) =>
-        `${theme.colors.background} 60%, ${theme.colors.background}dd 70%, #0000`}
-    );
+    background-color: ${({ theme }) => theme.colors.background};
+    box-shadow: 0 4px 20px 20px ${({ theme }) => theme.colors.background};
     content: "";
-    height: 100%;
+    height: 65%;
     left: 0;
     position: absolute;
     top: 0;

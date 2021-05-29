@@ -30,7 +30,7 @@ const Button = styled.button<{ height?: number }>`
 const NextButton = styled(Button)`
   ::after {
     right: 28.5%;
-    width: 2%;
+    width: 4%;
   }
   ::before {
     clip-path: polygon(7% 0, 92% 50.5%, 92% 50.5%, 7% 100%);
@@ -39,7 +39,7 @@ const NextButton = styled(Button)`
 const PrevButton = styled(Button)`
   ::after {
     left: 28.5%;
-    width: 1%;
+    width: 4%;
   }
   ::before {
     clip-path: polygon(92% 0, 7% 50.5%, 7% 50.5%, 92% 100%);
