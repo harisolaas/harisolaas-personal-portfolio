@@ -53,7 +53,7 @@ const Header = styled.header`
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  z-index: 3;
+  z-index: 1;
   ::before {
     background-color: ${({ theme }) => theme.colors.background};
     box-shadow: 0 4px 20px 20px ${({ theme }) => theme.colors.background};
@@ -70,6 +70,7 @@ const LayoutWrapper = styled.div`
   flex-flow: column;
   min-height: 100vh;
   position: relative;
+  z-index: 1;
 `;
 const Logo = styled.span`
   font-family: ${({ theme }) => theme.fonts.primary};

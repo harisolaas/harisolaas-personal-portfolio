@@ -9,6 +9,9 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  body {
+    position: relative;
+  }
   a {
     color: inherit;
     text-decoration: none;

@@ -5,6 +5,7 @@ export const defaultText = css`
   font-family: ${({ theme }) => theme.fonts.primary};
   font-size: 1rem;
   line-height: 1.5;
+  text-shadow: ${({ theme }) => theme.textShadow};
 `;
 export const globalPadding = css`
   padding: 0 36px;
@@ -13,6 +14,7 @@ export const heading = css`
   color: ${({ theme }) => theme.colors.primary};
   font-family: ${({ theme }) => theme.fonts.secondary};
   line-height: 1.25;
+  text-shadow: ${({ theme }) => theme.textShadow};
 `;
 export const firefly = css`
   background-color: ${({ theme }) => theme.colors.firefly};

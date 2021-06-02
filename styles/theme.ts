@@ -27,7 +27,7 @@ const theme: DefaultTheme = {
   },
   footerHeight: 48,
   headerHeight: 76,
-  textShadow: `-1px 0.7px 0px ${black}`,
+  textShadow: `-1px 0.7px 0px ${background}`,
 };
 
 export default theme;

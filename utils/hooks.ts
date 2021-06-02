@@ -1,15 +1,5 @@
 import React from "react";
-
-function debounce(callback: () => void, wait: number) {
-  let timeout: NodeJS.Timeout;
-
-  return function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      callback();
-    }, wait);
-  };
-}
+import { debounce } from "./index";
 
 function useResponsiveWidth(
   componentRef: React.MutableRefObject<HTMLElement>
