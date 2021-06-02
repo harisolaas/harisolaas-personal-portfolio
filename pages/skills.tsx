@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
@@ -94,46 +95,63 @@ export default function Skills(): JSX.Element {
   const [activeTechIndex, setActiveTechIndex] = React.useState(0);
   const handleTechChange = (index: number) => setActiveTechIndex(index);
   return (
-    <Layout title="Skills">
-      <Main>
-        <H1>Skills</H1>
-        <Text>
-          I'm your <strong>Java Script specialist</strong>, I love to find
-          simple solutions to complex challenges.
-          <br />
-          The main languages and technologies I work with are:
-        </Text>
-        <ListGrid>
-          <List>
-            {technologies.map((technology, index) => (
-              <ListItem key={technology}>
-                <TechButton
-                  active={index === activeTechIndex}
-                  onClick={() => handleTechChange(index)}
-                >
-                  {technology}
-                </TechButton>
-              </ListItem>
-            ))}
-          </List>
-          <DodecahedronContainer>
-            <Dodecahedron
-              activeLabelIndex={activeTechIndex}
-              labels={technologies}
-              onFaceClick={handleTechChange}
-            />
-          </DodecahedronContainer>
-          <Tapir>
-            <Image
-              src="/images/tapir.webp"
-              alt="Tapir illustration"
-              height={250}
-              priority
-              width={259}
-            />
-          </Tapir>
-        </ListGrid>
-      </Main>
-    </Layout>
+    <>
+      <Head>
+        <meta
+          property="og:title"
+          content="Skills: I'm your Java Script specialist."
+        />
+        <meta
+          property="og:description"
+          content="I love to find simple solutions to complex challenges. The main languages and technologies I work with are: React JS, Node JS, TypeScript, Vanilla Java Script, Jest, Redux, Immutable, GraphQL, HTML5, CSS3, SCSS and React Native."
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}skills`}
+        />
+        <meta property="og:image" content="/images/tapir-OG.jpg" />
+      </Head>
+      <Layout title="Skills">
+        <Main>
+          <H1>Skills</H1>
+          <Text>
+            I'm your <strong>Java Script specialist</strong>, I love to find
+            simple solutions to complex challenges.
+            <br />
+            The main languages and technologies I work with are:
+          </Text>
+          <ListGrid>
+            <List>
+              {technologies.map((technology, index) => (
+                <ListItem key={technology}>
+                  <TechButton
+                    active={index === activeTechIndex}
+                    onClick={() => handleTechChange(index)}
+                  >
+                    {technology}
+                  </TechButton>
+                </ListItem>
+              ))}
+            </List>
+            <DodecahedronContainer>
+              <Dodecahedron
+                activeLabelIndex={activeTechIndex}
+                labels={technologies}
+                onFaceClick={handleTechChange}
+              />
+            </DodecahedronContainer>
+            <Tapir>
+              <Image
+                src="/images/tapir.webp"
+                alt="Tapir illustration"
+                height={250}
+                priority
+                width={259}
+              />
+            </Tapir>
+          </ListGrid>
+        </Main>
+      </Layout>
+    </>
   );
 }

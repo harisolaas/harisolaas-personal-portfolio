@@ -1,5 +1,6 @@
-import React from "react";
+import Head from "next/head";
 import Image from "next/image";
+import React from "react";
 import styled from "styled-components";
 import AnimatedClick from "../components/animated-click";
 import H1 from "../components/styled-h1";
@@ -58,35 +59,53 @@ const TextContainer = styled.div`
 
 export default function Contact(): JSX.Element {
   return (
-    <Layout title="Contact">
-      <Main>
-        <Grid>
-          <TextContainer>
-            <H1>Contact me!</H1>
-            <Text>
-              Want to get in touch? You can email me at
-              <br />
-              <Email href="mailto:dev@harisolaas.com">
-                <AnimatedClick>dev@harisolaas.com</AnimatedClick>
-              </Email>
-              .<br />
-              Or connect with me on LinkedIn
-              <br />
-              <Email
-                href="https://www.linkedin.com/in/harisolaas/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AnimatedClick>linkedin.com/in/harisolaas</AnimatedClick>
-              </Email>
-              .
-            </Text>
-          </TextContainer>
-          <ImageContainer>
-            <Image height={796} width={662} src="/images/oso-hormiguero.webp" />
-          </ImageContainer>
-        </Grid>
-      </Main>
-    </Layout>
+    <>
+      <Head>
+        <meta property="og:title" content="Contact: Want to get in touch?" />
+        <meta
+          property="og:description"
+          content="Find my contact information here!"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}contact`}
+        />
+        <meta property="og:image" content="/images/oso-hormiguero-OG.jpg" />
+      </Head>
+      <Layout title="Contact">
+        <Main>
+          <Grid>
+            <TextContainer>
+              <H1>Contact me!</H1>
+              <Text>
+                Want to get in touch? You can email me at
+                <br />
+                <Email href="mailto:dev@harisolaas.com">
+                  <AnimatedClick>dev@harisolaas.com</AnimatedClick>
+                </Email>
+                .<br />
+                Or connect with me on LinkedIn
+                <br />
+                <Email
+                  href="https://www.linkedin.com/in/harisolaas/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <AnimatedClick>linkedin.com/in/harisolaas</AnimatedClick>
+                </Email>
+                .
+              </Text>
+            </TextContainer>
+            <ImageContainer>
+              <Image
+                height={796}
+                width={662}
+                src="/images/oso-hormiguero.webp"
+              />
+            </ImageContainer>
+          </Grid>
+        </Main>
+      </Layout>
+    </>
   );
 }

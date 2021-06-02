@@ -114,6 +114,8 @@ const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
       </Head>
       <Header>
         <LogoWrapper>

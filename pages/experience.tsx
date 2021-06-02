@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import BrandItem from "../components/brand-item";
@@ -161,48 +162,65 @@ export default function Experience(): JSX.Element {
   );
 
   return (
-    <Layout title="Experience">
-      <Main>
-        <BackgroundImageContainer>
-          <BackgroundImageWrapper>
-            <Image
-              src="/images/martin-pescador.webp"
-              alt="Martin pescador illustration"
-              height={300}
-              width={421}
-              priority
-            />
-          </BackgroundImageWrapper>
-        </BackgroundImageContainer>
-        <H1>Experience</H1>
-        <H2>These are the companies and brands that I've worked with</H2>
-        <Brands>
-          {brandsAndCompanies.map(({ name, url }) => (
-            <BrandItem key={url} brand={name} url={url} />
-          ))}
-        </Brands>
-        <H2>And comments from clients and co-workers</H2>
-        <RecommendationsSlider onSlide={() => setExpandedMessageIndex(null)}>
-          {recommendationsData.map(
-            ({ author, company, message, position }, index) => (
-              <RecommendationItem key={index}>
-                <Recommendation>
-                  <Message
-                    expanded={index === expandedMessageIndex}
-                    onClick={() => setExpandedMessageIndex(index)}
-                  >
-                    “{message}”
-                  </Message>
-                  <Signature>
-                    <strong>{author}</strong>.<br />
-                    {position}, {company}.
-                  </Signature>
-                </Recommendation>
-              </RecommendationItem>
-            )
-          )}
-        </RecommendationsSlider>
-      </Main>
-    </Layout>
+    <>
+      <Head>
+        <meta
+          property="og:title"
+          content="Experience: an overview on my career so far."
+        />
+        <meta
+          property="og:description"
+          content="List of the companies and brands that I've worked with along with comments from clients and colleagues."
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}experience`}
+        />
+        <meta property="og:image" content="/images/tatu-carreta-OG.jpg" />
+      </Head>
+      <Layout title="Experience">
+        <Main>
+          <BackgroundImageContainer>
+            <BackgroundImageWrapper>
+              <Image
+                src="/images/martin-pescador.webp"
+                alt="Martin pescador illustration"
+                height={300}
+                width={421}
+                priority
+              />
+            </BackgroundImageWrapper>
+          </BackgroundImageContainer>
+          <H1>Experience</H1>
+          <H2>These are the companies and brands that I've worked with</H2>
+          <Brands>
+            {brandsAndCompanies.map(({ name, url }) => (
+              <BrandItem key={url} brand={name} url={url} />
+            ))}
+          </Brands>
+          <H2>And comments from clients and colleagues</H2>
+          <RecommendationsSlider onSlide={() => setExpandedMessageIndex(null)}>
+            {recommendationsData.map(
+              ({ author, company, message, position }, index) => (
+                <RecommendationItem key={index}>
+                  <Recommendation>
+                    <Message
+                      expanded={index === expandedMessageIndex}
+                      onClick={() => setExpandedMessageIndex(index)}
+                    >
+                      “{message}”
+                    </Message>
+                    <Signature>
+                      <strong>{author}</strong>.<br />
+                      {position}, {company}.
+                    </Signature>
+                  </Recommendation>
+                </RecommendationItem>
+              )
+            )}
+          </RecommendationsSlider>
+        </Main>
+      </Layout>
+    </>
   );
 }

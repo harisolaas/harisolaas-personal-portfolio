@@ -1,4 +1,5 @@
 import { differenceInYears } from "date-fns";
+import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import H1 from "../components/styled-h1";
@@ -100,59 +101,70 @@ export default function Home(): JSX.Element {
   const yearsOfExperience = differenceInYears(new Date(), new Date(2016, 1, 1));
 
   return (
-    <Layout>
-      <Main>
-        <Grid>
-          <PresentationHeader>
-            <AvatarContainer>
-              <Avatar
-                src="/images/avatar.webp"
-                alt="Personal picture"
-                height={120}
-                width={120}
-                priority
-              />
-            </AvatarContainer>
-            <TitleContainer>
-              <H1>Hi, I'm Hari Solaas! Pleased to meet you.</H1>
-            </TitleContainer>
-          </PresentationHeader>
-          <Yaguarete>
-            <YaguareteWrapper>
-              <Image
-                src="/images/yaguarete.webp"
-                alt="Yaguarete illustration"
-                height={475}
-                width={604.46}
-                priority
-              />
-            </YaguareteWrapper>
-          </Yaguarete>
-          <PresentationText>
-            <Text>
-              For the last {yearsOfExperience} years I've been building{" "}
-              <strong>Wep Applications</strong> for clients around the world,
-              startups and big companies. My experience ranges from working as a
-              solo <strong>Freelance Profesional</strong> as well as a part of
-              bigger teams.
-            </Text>
-            <Text>
-              When working with me you can expect a fluid communication,
-              attention to detail and super attractive results.
-            </Text>
-          </PresentationText>
+    <>
+      <Head>
+        <meta property="og:title" content="Hari Solaas, frontend engineer." />
+        <meta
+          property="og:description"
+          content="For the last 5 years I've been building Wep Applications for clients around the world, startups and big companies. My experience ranges from working as a solo Freelance Profesional as well as a part of bigger teams. When working with me you can expect a fluid communication, attention to detail and super attractive results."
+        />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL} />
+        <meta property="og:image" content="/images/yaguarete-OG.jpg" />
+      </Head>
+      <Layout>
+        <Main>
+          <Grid>
+            <PresentationHeader>
+              <AvatarContainer>
+                <Avatar
+                  src="/images/avatar.webp"
+                  alt="Personal picture"
+                  height={120}
+                  width={120}
+                  priority
+                />
+              </AvatarContainer>
+              <TitleContainer>
+                <H1>Hi, I'm Hari Solaas! Pleased to meet you.</H1>
+              </TitleContainer>
+            </PresentationHeader>
+            <Yaguarete>
+              <YaguareteWrapper>
+                <Image
+                  src="/images/yaguarete.webp"
+                  alt="Yaguarete illustration"
+                  height={475}
+                  width={604.46}
+                  priority
+                />
+              </YaguareteWrapper>
+            </Yaguarete>
+            <PresentationText>
+              <Text>
+                For the last {yearsOfExperience} years I've been building{" "}
+                <strong>Wep Applications</strong> for clients around the world,
+                startups and big companies. My experience ranges from working as
+                a solo <strong>Freelance Profesional</strong> as well as a part
+                of bigger teams.
+              </Text>
+              <Text>
+                When working with me you can expect a fluid communication,
+                attention to detail and super attractive results.
+              </Text>
+            </PresentationText>
 
-          <Tatu>
-            <Image
-              src="/images/tatu-carreta.webp"
-              alt="Tatu carreta illustration"
-              height={170}
-              width={350}
-              priority
-            />
-          </Tatu>
-        </Grid>
-      </Main>
-    </Layout>
+            <Tatu>
+              <Image
+                src="/images/tatu-carreta.webp"
+                alt="Tatu carreta illustration"
+                height={170}
+                width={350}
+                priority
+              />
+            </Tatu>
+          </Grid>
+        </Main>
+      </Layout>
+    </>
   );
 }
