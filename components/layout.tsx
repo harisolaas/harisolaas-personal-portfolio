@@ -1,14 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
+import React from "react";
 import AnimatedClick from "./animated-click";
 import NavLink from "./nav-link";
+import { useNav } from "./nav-provider";
 import ButtonToggleNav from "./toggle-nav-button";
 import { defaultText, globalPadding } from "../styles/mixins";
 import media from "../utils/media-queries";
-import React from "react";
 
 const ButtonToggleNavWrapper = styled.div`
+  z-index: 2;
   ${media("medium")`
     display: none;
   `}
@@ -24,6 +26,7 @@ const GlobalNavigation = styled.nav<{ isOpen: boolean }>`
   top: 48px;
   transition: all 0.3s;
   width: 100%;
+  z-index: 1;
   ${media("medium")`
     background-color: unset;
     flex-flow: row;
@@ -53,7 +56,7 @@ const Header = styled.header`
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
   ::before {
     background-color: ${({ theme }) => theme.colors.background};
     box-shadow: 0 4px 20px 20px ${({ theme }) => theme.colors.background};
@@ -63,6 +66,7 @@ const Header = styled.header`
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 2;
   }
 `;
 const LayoutWrapper = styled.div`
@@ -89,7 +93,7 @@ const Logo = styled.span`
   }
 `;
 const LogoWrapper = styled.span`
-  z-index: 1;
+  z-index: 2;
 `;
 const Footer = styled.footer`
   ${globalPadding}
@@ -106,7 +110,8 @@ interface LayoutProps {
   title?: string;
 }
 const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
-  const [isNavOpen, setIsNavOpen] = React.useState(false);
+  const [isNavOpen, setIsNavOpen] = useNav();
+  const handleLinkClick = () => setIsNavOpen(false);
 
   return (
     <LayoutWrapper>
@@ -120,14 +125,20 @@ const Layout: React.FC<LayoutProps> = ({ children, title = "Hari Solaas" }) => {
       </Head>
       <Header>
         <LogoWrapper>
-          <NavLink href="/">
+          <NavLink href="/" onClick={handleLinkClick}>
             <Logo>HS</Logo>
           </NavLink>
         </LogoWrapper>
         <GlobalNavigation isOpen={isNavOpen}>
-          <NavLink href="/skills">Skills</NavLink>
-          <NavLink href="/experience">Experience</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
+          <NavLink href="/skills" onClick={handleLinkClick}>
+            Skills
+          </NavLink>
+          <NavLink href="/experience" onClick={handleLinkClick}>
+            Experience
+          </NavLink>
+          <NavLink href="/contact" onClick={handleLinkClick}>
+            Contact
+          </NavLink>
         </GlobalNavigation>
         <ButtonToggleNavWrapper>
           <ButtonToggleNav

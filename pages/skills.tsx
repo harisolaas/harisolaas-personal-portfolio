@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import H1 from "../components/styled-h1";
 import Layout from "../components/layout";
+import { useNav } from "../components/nav-provider";
 import Main from "../components/styled-main";
 import Text from "../components/styled-text";
 import { defaultText } from "../styles/mixins";
@@ -24,9 +25,13 @@ const technologies = [
   "SCSS",
   "React Native",
 ];
-const DodecahedronContainer = styled.div`
+
+const DodecahedronContainer = styled.div<{ hide: boolean }>`
   grid-row: 1 / 2;
   margin-bottom: 12px;
+  /* Fix for Safari mobile to avoid component from overlapping nav */
+  opacity: ${({ hide }) => (hide ? 0 : 1)};
+  transition: opacity 0.3s;
   ${media("medium")`
     grid-column-start: 3;
     grid-row: 1 / 3;
@@ -80,6 +85,7 @@ const TechButton = styled.button<{ active: boolean }>`
   cursor: pointer;
   font-size: 1rem;
   padding: 4px 8px;
+  text-shadow: none;
   transition: all 0.3s;
   :hover {
     box-shadow: 0px 0 5px 0.5px ${({ theme }) => theme.colors.firefly};
@@ -94,6 +100,8 @@ const TechButton = styled.button<{ active: boolean }>`
 export default function Skills(): JSX.Element {
   const [activeTechIndex, setActiveTechIndex] = React.useState(0);
   const handleTechChange = (index: number) => setActiveTechIndex(index);
+  const [isNavOpen] = useNav();
+
   return (
     <>
       <Head>
@@ -133,7 +141,7 @@ export default function Skills(): JSX.Element {
                 </ListItem>
               ))}
             </List>
-            <DodecahedronContainer>
+            <DodecahedronContainer hide={isNavOpen}>
               <Dodecahedron
                 activeLabelIndex={activeTechIndex}
                 labels={technologies}

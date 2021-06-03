@@ -1,6 +1,8 @@
 import { AppProps } from "next/app";
 import dynamic from "next/dynamic";
+import React from "react";
 import { ThemeProvider } from "styled-components";
+import NavProvider from "../components/nav-provider";
 import GlobalStyle from "../styles/global-style";
 import "../styles/fonts.css";
 import SvgFilters from "../styles/svg-filters";
@@ -18,7 +20,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <SvgFilters />
-        <Component {...pageProps} />
+        <NavProvider>
+          <Component {...pageProps} />
+        </NavProvider>
       </ThemeProvider>
     </>
   );

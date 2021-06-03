@@ -19,12 +19,18 @@ const AnimatedLink = styled(AnimatedClick)<AnimatedLinkProps>`
   ${({ current }) => (current ? forceFireflyFinalPosition : "")}
 `;
 
-const NavLink: React.FC<LinkProps> = ({ children, href, ...otherProps }) => {
+type NavLinkProps = { onClick: () => void } & LinkProps;
+const NavLink: React.FC<NavLinkProps> = ({
+  children,
+  href,
+  onClick,
+  ...otherProps
+}) => {
   const { pathname } = useRouter();
 
   return (
     <Link href={href} passHref {...otherProps}>
-      <a>
+      <a onClick={onClick}>
         <AnimatedLink current={href === pathname}>{children}</AnimatedLink>
       </a>
     </Link>
