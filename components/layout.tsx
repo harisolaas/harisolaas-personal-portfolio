@@ -35,6 +35,7 @@ const GlobalNavigation = styled.nav<{ isOpen: boolean }>`
     padding: 0;
     position: static;
     width: 280px;
+    z-index: 3;
   `}
   a {
     ${defaultText}
