@@ -13,8 +13,11 @@ import media from "../utils/media-queries";
 import React from "react";
 
 const brandsAndCompanies = [
+  { name: "Cruise", url: "getcruise.com" },
+  { name: "Toptal", url: "toptal.com" },
   { name: "Estée Lauder Companies", url: "elcompanies.com" },
   { name: "Nubi", url: "tunubi.com" },
+  { name: "Pythia Sports", url: "pythiasports.com" },
   { name: "Estée Lauder", url: "esteelauder.com" },
   { name: "Art of Living", url: "artofliving.org" },
   { name: "Clinique", url: "clinique.com" },
