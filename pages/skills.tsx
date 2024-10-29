@@ -15,15 +15,15 @@ const technologies = [
   "React JS",
   "Node JS",
   "TypeScript",
-  "Vanilla Java Script",
+  "React optimization",
   "Jest",
   "Redux",
-  "Immutable",
+  "SQL",
   "GraphQL",
-  "HTML5",
-  "CSS3",
-  "SCSS",
-  "React Native",
+  "Remix JS",
+  "React Testing Library",
+  "Express",
+  "Testing",
 ];
 
 const DodecahedronContainer = styled.div<{ hide: boolean }>`

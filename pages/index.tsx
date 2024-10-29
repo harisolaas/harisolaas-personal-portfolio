@@ -103,10 +103,10 @@ export default function Home(): JSX.Element {
   return (
     <>
       <Head>
-        <meta property="og:title" content="Hari Solaas, frontend engineer." />
+        <meta property="og:title" content="Hari Solaas, software engineer." />
         <meta
           property="og:description"
-          content="For the last 5 years I've been building Wep Applications for clients around the world, startups and big companies. My experience ranges from working as a solo Freelance Profesional as well as a part of bigger teams. When working with me you can expect a fluid communication, attention to detail and super attractive results."
+          content={`For the last ${yearsOfExperience} years I've been building Applications for clients around the world, startups and big companies. My experience ranges from working in world class agile environments to CTO consultancy for startups. When working with me you can expect a fluid communication, attention to detail and eye pleasing results.`}
         />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL} />
         <meta property="og:image" content="/images/yaguarete-OG.jpg" />
@@ -141,15 +141,16 @@ export default function Home(): JSX.Element {
             </Yaguarete>
             <PresentationText>
               <Text>
-                For the last {yearsOfExperience} years I've been building{" "}
-                <strong>Wep Applications</strong> for clients around the world,
-                startups and big companies. My experience ranges from working as
-                a solo <strong>Freelance Profesional</strong> as well as a part
-                of bigger teams.
+                For the last ${yearsOfExperience} years I've been building
+                <strong>Applications</strong> for clients around the world,
+                startups and global companies. My experience ranges from working
+                in world class
+                <strong>Agile</strong> environments to{" "}
+                <strong>CTO consultancy</strong> for startups.
               </Text>
               <Text>
                 When working with me you can expect a fluid communication,
-                attention to detail and super attractive results.
+                attention to detail and eye pleasing results.
               </Text>
             </PresentationText>
 
